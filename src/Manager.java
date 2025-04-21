@@ -3,12 +3,28 @@ public class Manager extends Employee {
     private int teamSize;
     private String projectName;
 
-    public Manager(String employeeID, String employeeName, String department, String gender, double salary,
+    public Manager(String employeeID, String employeeName, String department, String gender, String role, double salary,
                    int performanceRating, int teamSize, String projectName) {
-        super(employeeID, employeeName, department, gender, salary, performanceRating);
+        super(employeeID, employeeName, department, gender,role, salary, performanceRating);
         this.teamSize = teamSize;
         this.projectName = projectName;
 
+    }
+
+    //getter
+    int getTeamSize(){
+        return teamSize;
+    }
+    String getProjectName(){
+        return projectName;
+    }
+
+    //setters
+    public void setTeamSize(int teamSize){
+        this.teamSize = teamSize; }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     @Override
@@ -28,9 +44,11 @@ public class Manager extends Employee {
 
     @Override
     public void displayEmployeeDetails() {
-        super.displayEmployeeDetails();
-        System.out.println("Team Size: " + teamSize+ " people.");
-        System.out.println("Project: " + projectName);
+        System.out.println(String.format(
+                "ID: %s | Name: %s | Department: %s | Gender: %s | Role: %s | Salary: $%.2f | Performance Rating: %d ⭐️ | Team Size: %d pp | Project: %s",
+                getEmployeeID(), getEmployeeName(), getDepartment(), getGender(),
+                getRole(), getBaseSalary(), getPerformanceRating(), teamSize, projectName
+        ));
 
     }
 }

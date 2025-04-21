@@ -4,15 +4,17 @@ abstract class Employee {
     private String employeeName;
     private String department;
     private String gender;
+    private String role;
     private double baseSalary;
     private int performanceRating;
 
     //constructor
-    public Employee(String employeeID, String employeeName, String department, String gender, double baseSalary, int performanceRating) {
+    public Employee(String employeeID, String employeeName, String department, String gender, String role, double baseSalary, int performanceRating) {
         this.employeeID = employeeID;
         this.employeeName = employeeName;
         this.department = department;
         this.gender = gender;
+        this.role = role;
         this.baseSalary = baseSalary;
         this.performanceRating = performanceRating;
     }
@@ -30,6 +32,8 @@ abstract class Employee {
     public String getDepartment() {
         return department; }
 
+    public String getRole(){ return  role;}
+
     public double getBaseSalary() {
         return baseSalary; }
 
@@ -42,6 +46,9 @@ abstract class Employee {
 
     public void setDepartment(String department) {
         this.department = department; }
+
+    public void setRole(String role) {
+        this.role = role; }
 
     public void setGender(String gender){
         this.gender = gender; }
@@ -58,12 +65,7 @@ abstract class Employee {
 
     // Display default info of employee
     public void displayEmployeeDetails() {
-        System.out.println("Employee ID: " + employeeID);
-        System.out.println("Employee Name: " + employeeName);
-        System.out.println("Department: " + department);
-        System.out.println("Gender: " + gender);
-        System.out.println("Base Salary: $" + baseSalary);
-        System.out.println("Performance Rating: " + performanceRating +" ⭐️");
+        System.out.println(employeeID + " | " + employeeName + " | " + department + " | " + gender + " | " + role + " | $" + baseSalary + " | " + performanceRating + " ⭐️");
     }
 
 
