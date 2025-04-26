@@ -16,7 +16,7 @@ public class Intern extends Employee{
         return internshipDuration;
     }
 
-    // setters
+    // setterss
     public void setUniversityName(String universityName){
         this.universityName =universityName;
     }
