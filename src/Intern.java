@@ -8,7 +8,7 @@ public class Intern extends Employee{
         this.internshipDuration = internshipDuration;
     }
 
-    //getters
+    //getterss
      String getUniversityName(){
         return universityName;
     }
