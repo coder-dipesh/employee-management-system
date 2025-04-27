@@ -69,7 +69,7 @@ abstract class Employee {
     }
 
 
-    // evaluatePerformance
+    // EvaluatePerformance
     public void evaluatePerformance() {
         if (performanceRating <= 3) {
             System.out.println("Warning Letter Issued.");

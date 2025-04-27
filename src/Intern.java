@@ -8,7 +8,7 @@ public class Intern extends Employee{
         this.internshipDuration = internshipDuration;
     }
 
-    //getters
+    //getterss
      String getUniversityName(){
         return universityName;
     }
@@ -16,7 +16,7 @@ public class Intern extends Employee{
         return internshipDuration;
     }
 
-    // setters
+    // setterss
     public void setUniversityName(String universityName){
         this.universityName =universityName;
     }
