@@ -157,10 +157,13 @@ public class TextBasedCLI {
                 case 9 -> employeeManager.recentActions();
 
                 case 10 -> {
+
                     employeeManager.saveToFile(filePath);
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                     String timestamp = LocalDateTime.now().format(formatter);
                     System.out.println(UIEnhancement.GREEN + "✔ Changes saved successfully at " + timestamp + UIEnhancement.RESET);
+
+
                 }
 
                 case 11 -> {
