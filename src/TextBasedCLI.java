@@ -1,12 +1,12 @@
 import java.util.List;
 import java.util.Scanner;
-
+import java.time.LocalDateTime; // Add this import
+import java.time.format.DateTimeFormatter; // Add this import
 
 public class TextBasedCLI {
     EmployeeManager employeeManager = new EmployeeManager();
     Scanner sc = new Scanner(System.in);
     int choice;
-
 
     public void userMenu() {
         do {
@@ -47,7 +47,12 @@ public class TextBasedCLI {
                     employeeManager.loadFromFile(filePath);
                 }
 
-                case 2 -> employeeManager.viewAllEmployees();
+                case 2 -> {
+                    employeeManager.viewAllEmployees();
+                    System.out.println(UIEnhancement.GREEN + "-----------------------------------------------------");
+                    System.out.println("Total Employees: " + employeeManager.getEmployeeCount());
+                    System.out.println("-----------------------------------------------------" + UIEnhancement.RESET);
+                }
 
                 case 3 -> {
                     System.out.print("Enter Role (Manager/Regular/Intern): ");
@@ -146,18 +151,29 @@ public class TextBasedCLI {
                     System.out.print("Enter ID to delete: ");
                     String id = sc.nextLine();
                     employeeManager.deleteEmployee(id);
+                    System.out.println(UIEnhancement.GREEN + "✔ Employee deletion attempted for ID: " + id + UIEnhancement.RESET);
                 }
 
                 case 9 -> employeeManager.recentActions();
 
-                case 10 ->
-                        {
-                            employeeManager.saveToFile(filePath);
-                        }
+                case 10 -> {
+                    employeeManager.saveToFile(filePath);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String timestamp = LocalDateTime.now().format(formatter);
+                    System.out.println(UIEnhancement.GREEN + "✔ Changes saved successfully at " + timestamp + UIEnhancement.RESET);
+                }
 
-                case 11 -> System.out.println(UIEnhancement.GREEN + "\n👋 Exiting the system. Goodbye!" + UIEnhancement.RESET);
+                case 11 -> {
+                    System.out.print("Are you sure you want to exit? (yes/no): ");
+                    String confirm = sc.nextLine();
+                    if (confirm.equalsIgnoreCase("yes")) {
+                        System.out.println(UIEnhancement.GREEN + "\n👋 Exiting the system. Goodbye!" + UIEnhancement.RESET);
+                    } else {
+                        choice = -1; // Reset choice to avoid exiting
+                    }
+                }
+
             }
-
         } while (choice != 11);
         sc.close();
     }

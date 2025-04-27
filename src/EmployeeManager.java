@@ -6,6 +6,11 @@ public class EmployeeManager {
     private Queue<String> recentActions = new LinkedList<>();
     private boolean isModified = false;
 
+    //Total Number of employees
+    public int getEmployeeCount() {
+        return employees.size();
+    }
+
     // load file
     public void loadFromFile(String filePath) {
         employees.clear();
