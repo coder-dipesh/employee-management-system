@@ -42,7 +42,7 @@ Employee Management System - README
 
 -----------------
 
-## 📖 Authors
+## ✨ Authors
     Developed and tested by
 - Mr Dipesh SIWAKOTI
 - Mr Avay KUSHWAHA 
