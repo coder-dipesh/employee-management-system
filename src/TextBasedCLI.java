@@ -23,18 +23,19 @@ public class TextBasedCLI {
             System.out.println("6.  Search by ID");
             System.out.println("7.  Update Employee");
             System.out.println("8.  Delete Employee");
-            System.out.println("9.  View Recent Actions");
-            System.out.println("10. Save Changes");
-            System.out.println("11. Exit");
+            System.out.println("9.  Performance & Salary Actions");
+            System.out.println("10.  View Recent Actions");
+            System.out.println("11.  Save Changes");
+            System.out.println("12.  Exit");
 
             // user input validation
             while (true) {
-                System.out.print("\nEnter your choice (1–11): ");
+                System.out.print("\nEnter your choice (1–12): ");
                 String input = sc.nextLine();
                 try {
                     choice = Integer.parseInt(input);
-                    if (choice >= 1 && choice <= 11) break;
-                    else System.out.println(UIEnhancement.RED + "❌ Please enter a number between 1 and 11." + UIEnhancement.RESET);
+                    if (choice >= 1 && choice <= 12) break;
+                    else System.out.println(UIEnhancement.RED + "❌ Please enter a number between 1 and 12." + UIEnhancement.RESET);
                 } catch (NumberFormatException e) {
                     System.out.println(UIEnhancement.RED + "❌ Invalid input. Enter a valid number." + UIEnhancement.RESET);
                 }
@@ -43,7 +44,7 @@ public class TextBasedCLI {
             String filePath = "data/employee_data.txt";
             switch (choice) {
                 case 1 -> {
-                    UIEnhancement.progressBar("\uD83D\uDCC2 Loading Employees Data");
+                    UIEnhancement.progressBar("\uD83D\uDCC2 Loading Employees Data", 30);
                     employeeManager.loadFromFile(filePath);
                 }
 
@@ -105,7 +106,7 @@ public class TextBasedCLI {
                     String name = sc.nextLine();
                     List<Employee> results = employeeManager.searchByName(name);
                     if (results != null && !results.isEmpty()) {
-                        UIEnhancement.progressBar("Searching Employee by Name: ");
+                        UIEnhancement.progressBar("Searching Employee by Name: ", 35);
                         for (Employee employee : results) {
                             employee.displayEmployeeDetails();
                         }
@@ -123,7 +124,7 @@ public class TextBasedCLI {
                     sc.nextLine();
                     List<Employee> results = employeeManager.searchByPerformanceRating(rating);
                     if (results != null && !results.isEmpty()) {
-                        UIEnhancement.progressBar("Searching Employee by Performance Rating: ");
+                        UIEnhancement.progressBar("Searching Employee by Performance Rating: ", 35);
 
                         for (Employee e : results) e.displayEmployeeDetails();
                         System.out.println(UIEnhancement.GREEN+"-----------------------------------------------------");
@@ -153,10 +154,15 @@ public class TextBasedCLI {
                     employeeManager.deleteEmployee(id);
                     System.out.println(UIEnhancement.GREEN + "✔ Employee deletion attempted for ID: " + id + UIEnhancement.RESET);
                 }
+                case 9 ->{
+                    System.out.print("Enter employee ID to evaluate: ");
+                    String id = sc.nextLine();
+                    employeeManager.performanceSalaryActions(id);
+                }
 
-                case 9 -> employeeManager.recentActions();
+                case 10 -> employeeManager.recentActions();
 
-                case 10 -> {
+                case 11 -> {
 
                     employeeManager.saveToFile(filePath);
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -166,7 +172,7 @@ public class TextBasedCLI {
 
                 }
 
-                case 11 -> {
+                case 12 -> {
                     System.out.print("Are you sure you want to exit? (yes/no): ");
                     String confirm = sc.nextLine();
                     if (confirm.equalsIgnoreCase("yes")) {
@@ -177,7 +183,7 @@ public class TextBasedCLI {
                 }
 
             }
-        } while (choice != 11);
+        } while (choice != 12);
         sc.close();
     }
 }

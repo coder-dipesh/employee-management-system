@@ -2,11 +2,11 @@ import java.io.*;
 import java.util.*;
 
 public class EmployeeManager {
-    private LinkedList<Employee> employees = new LinkedList<>();
-    private Queue<String> recentActions = new LinkedList<>();
+    private final LinkedList<Employee> employees = new LinkedList<>();
+    private final Queue<String> recentActions = new LinkedList<>();
     private boolean isModified = false;
 
-    //Total Number of employees
+    //total number of employees
     public int getEmployeeCount() {
         return employees.size();
     }
@@ -93,7 +93,7 @@ public class EmployeeManager {
                 bw.newLine();
             }
             System.out.println("File saved to " + filePath);
-            UIEnhancement.progressBar("💾 Saving Changes");
+            UIEnhancement.progressBar("💾 Saving Changes", 20);
 
             recentActions.add("File saved to " + filePath);
         } catch (IOException e) {
@@ -116,7 +116,6 @@ public class EmployeeManager {
     }
 
     // update employee
-
     public void updateEmployee(String id, Scanner sc) {
         for (Employee employee : employees) {
             if (employee.getEmployeeID().equalsIgnoreCase(id)) {
@@ -230,7 +229,6 @@ public class EmployeeManager {
         System.out.println("No employee found with that ID.");
     }
 
-
     // view all employees
     public void viewAllEmployees() {
         for (Employee employee : employees) {
@@ -244,15 +242,15 @@ public class EmployeeManager {
 
     // search employee by id
     // return employee details with matching id else show error
-    public void searchById(String id) {
+    public Employee searchById(String id) {
         for (Employee employee : employees) {
             if (employee.getEmployeeID().equalsIgnoreCase(id)) {
                 employee.displayEmployeeDetails();
                 recentActions.add( "'" + id + "'" + "  searched, using search by id.");
-                return;
+                return employee;
             }
         }
-        System.out.println("Employee not found.");
+        return null;
     }
 
     // search employee by name
@@ -282,6 +280,7 @@ public class EmployeeManager {
         return searchByPerformanceRatingResult;
     }
 
+    // display every action done by admin
     public void recentActions() {
         System.out.println(UIEnhancement.GREEN + "\n----- Admin Recent Actions -----" + UIEnhancement.RESET);
         if (recentActions.isEmpty()) {
@@ -294,6 +293,24 @@ public class EmployeeManager {
         System.out.println( UIEnhancement.GREEN + "----- Admin Recent Actions -----"+ UIEnhancement.RESET);
 
     }
+
+    public void performanceSalaryActions(String id){
+
+        Employee e = searchById(id);
+        if (e != null) {
+            System.out.println("\nBase Salary: $" + e.getBaseSalary());
+
+            UIEnhancement.progressBar("Evaluating performance... ", 35);
+
+            e.evaluatePerformance();
+            double finalPay = e.calculateBonus();
+            System.out.println("Final Salary after bonus/fine: $" + finalPay);
+            recentActions.add("Performance evaluated for: " + id);
+        } else {
+            System.out.println("Employee not found.");
+        }
+    }
+
 
 }
 

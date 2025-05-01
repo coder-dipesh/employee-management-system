@@ -30,13 +30,11 @@ public class Manager extends Employee {
     @Override
     public double calculateBonus() {
         if (getPerformanceRating() >= 8) {
-            evaluatePerformance();
-            System.out.println("Congrats! you have received 15% bonus.");
+            System.out.println(UIEnhancement.GREEN + "Congrats! you have received 15% bonus." + UIEnhancement.RESET );
             return getBaseSalary() * 1.15; // 15% bonus
         }
         else if (getPerformanceRating() <= 3){
-            evaluatePerformance();
-            System.out.println("5% salary is deducted from your base salary.");
+            System.out.println(UIEnhancement.YELLOW + "5% salary is deducted from your base salary." + UIEnhancement.RESET );
             return getBaseSalary() - (getBaseSalary() * 0.05);
         }
         else return getBaseSalary();

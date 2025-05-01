@@ -68,15 +68,14 @@ abstract class Employee {
         System.out.println(employeeID + " | " + employeeName + " | " + department + " | " + gender + " | " + role + " | $" + baseSalary + " | " + performanceRating + " ⭐️");
     }
 
-
-    // EvaluatethePerformance
+    // evaluate the performance
     public void evaluatePerformance() {
         if (performanceRating <= 3) {
-            System.out.println("Warning Letter Issued.");
+            System.out.println( UIEnhancement.YELLOW +"Warning Letter Issued." + UIEnhancement.RESET);
         } else if (performanceRating >= 8) {
-            System.out.println("Appreciation Letter Issued.");
+            System.out.println(UIEnhancement.GREEN + "Appreciation Letter Issued."+ UIEnhancement.RESET);
         } else {
-            System.out.println("Performance is Satisfactory.");
+            System.out.println(UIEnhancement.GREEN +"Performance is Satisfactory." + UIEnhancement.RESET);
         }
     }
 }

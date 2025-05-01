@@ -1,9 +1,9 @@
 public class UIEnhancement {
-    public static void progressBar(String message) {
+    public static void progressBar(String message, int speed) {
         System.out.print(message + " [");
         for (int i = 0; i <= 20; i++) {
             try {
-                Thread.sleep(40); // Speed of progress
+                Thread.sleep(speed); // speed of progress
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
