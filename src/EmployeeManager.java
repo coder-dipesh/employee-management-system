@@ -18,7 +18,7 @@ public class EmployeeManager {
             String readLine;
 
             while ((readLine = br.readLine()) != null) {
-                // skip first line that contains header
+                // skip the first line that contains header
                 if (readLine.toLowerCase().contains("id")) {
                     continue;
                 }
