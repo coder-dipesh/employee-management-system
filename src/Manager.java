@@ -31,7 +31,7 @@ public class Manager extends Employee {
     public double calculateBonus() {
         if (getPerformanceRating() >= 8) {
             evaluatePerformance();
-            System.out.println("Congratulations! you have received 15% bonus.");
+            System.out.println("Congrats! you have received 15% bonus.");
             return getBaseSalary() * 1.15; // 15% bonus
         }
         else if (getPerformanceRating() <= 3){

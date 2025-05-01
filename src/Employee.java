@@ -7,7 +7,7 @@ abstract class Employee {
     private String role;
     private double baseSalary;
     private int performanceRating;
-
+    
     //constructor
     public Employee(String employeeID, String employeeName, String department, String gender, String role, double baseSalary, int performanceRating) {
         this.employeeID = employeeID;
@@ -69,7 +69,7 @@ abstract class Employee {
     }
 
 
-    // EvaluatePerformance
+    // EvaluatethePerformance
     public void evaluatePerformance() {
         if (performanceRating <= 3) {
             System.out.println("Warning Letter Issued.");
