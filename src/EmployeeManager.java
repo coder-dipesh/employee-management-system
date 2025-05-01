@@ -282,18 +282,23 @@ public class EmployeeManager {
         return searchByPerformanceRatingResult;
     }
 
-    public void recentActions() {
-        System.out.println(UIEnhancement.GREEN + "\n----- Admin Recent Actions -----" + UIEnhancement.RESET);
-        if (recentActions.isEmpty()) {
-            System.out.println("----- No recent actions. ------");
-        } else {
-            for (String action : recentActions) {
-                System.out.println(UIEnhancement.CYAN + action + UIEnhancement.RESET );
-            }
-        }
-        System.out.println( UIEnhancement.GREEN + "----- Admin Recent Actions -----"+ UIEnhancement.RESET);
+   public void recentActions() {
+    String header = UIEnhancement.GREEN + "\n----- Admin Recent Actions -----" + UIEnhancement.RESET;
+    String footer = UIEnhancement.GREEN + "--------------------------------" + UIEnhancement.RESET;
 
+    System.out.println(header);
+
+    if (recentActions.isEmpty()) {
+        System.out.println(UIEnhancement.YELLOW + "⚠ No recent actions to display." + UIEnhancement.RESET);
+    } else {
+        recentActions.forEach(action -> 
+            System.out.println(UIEnhancement.CYAN + action + UIEnhancement.RESET)
+        );
     }
+
+    System.out.println(footer);
+}
+
 
 }
 
